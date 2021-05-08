@@ -1,0 +1,13 @@
+[Unit]
+Description=Aviso cambio de ip publica
+After=network.target
+[Service]
+Type=simple
+User=adminesp
+Group=adminesp
+WorkingDirectory=/home/noip
+ExecStart=/usr/bin/python3 /home/noip/noip.py
+StandardOutput=syslog
+StandardError=syslog
+[Install]
+WantedBy=multi-user.target
