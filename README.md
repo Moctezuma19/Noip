@@ -79,5 +79,5 @@ el servidor de correos deberá modifcar el archivo *noip.py*.
 **Importante**: Cualquier cambio en *noip.py* y *config.ini* deberá reiniciarse el
 servicio usando el comando *python noip.py install* seguido de *python noip.py start*.
 
-**Nota(1)**: De sospechar un mal funcionamiento, archivo noip.log o el visor de eventos de windows.
-**Nota(2)**: Para que el servicio se inicie de forma automática habría que modificar las propiedades del servicio en el visor de servicios.
+* **Nota(1)**: De sospechar un mal funcionamiento, archivo noip.log o el visor de eventos de windows.
+* **Nota(2)**: Para que el servicio se inicie de forma automática habría que modificar las propiedades del servicio en el visor de servicios.
