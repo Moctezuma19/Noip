@@ -1,4 +1,4 @@
-# Noip
+# Noip (Linux)
 
 El servicio de notificación de cambio de ip precisamente se activará cuando
 la ip pública del router al cual este conectada la máquina donde corre el
@@ -43,3 +43,7 @@ servicio usando el comando *systemctl*.
 
 **Nota**: De sospechar un mal funcionamiento, revisar el syslog que se encuentra
 en */var/log* (i.e */var/log/syslog*).
+
+# Noip (Windows)
+
+...
