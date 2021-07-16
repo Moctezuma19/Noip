@@ -9,7 +9,7 @@ import requests
 import logging.handlers
 from configparser import ConfigParser
 
-log_file_path = "C:\\Users\\CCT-RENATO\\Documents\\noip.log"  # mention full path here
+log_file_path = "C:\\Users\\(Tu usuario)\\Documents\\noip.log"  # mention full path here
 mylogger = logging.getLogger("TestLogger")
 mylogger.setLevel(logging.INFO)
 handler = logging.handlers.RotatingFileHandler(log_file_path)
@@ -82,7 +82,7 @@ class Noip(win32serviceutil.ServiceFramework):
                 resultado = "error"
                 print("Un error ha ocurrido al tratar de obtener la ip publica" + str(err))
             config2 = ConfigParser()
-            config2.read('C:\\Users\\CCT-RENATO\\Documents\\ip.ini')
+            config2.read('C:\\Users\\(Tu usuario)\\Documents\\ip.ini')
             ip = config2.get('ip','ip')
             print(ip)
             # si cambia se envia correo para avisar que cambio
