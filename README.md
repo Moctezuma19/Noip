@@ -16,13 +16,16 @@ este cambio.
 Crear una carpeta en */home* nombrada *'noip'* (i.e. */home/noip*), y poner allí
 los archivos *noip.py*, *config.ini*, *ip.ini*, *noip.service*.
 
-Abrir el archivo config.ini y modificar los parametros pertinentes donde
+Abrir el archivo *config.ini* y modificar los parametros pertinentes donde
 el campo *'local'* guarda el valor del correo que se utiliza para enviar no-
 tificaciones, *'password'* la contraseña del correo *'local'*, *'destino'* es el
 valor del correo de destino de las notificaciones y *'frecuencia'* guarda
 el valor en segundos de cada cuanto se hace la verificación de la ip pública.
 
 Abrir el archivo *ip.ini* y modificar el campo ip con la ip pública actual.
+
+Abrir el archivo *noip.service* y modificar los campos *'user'* y *'group'*
+con el usuario y grupo de la computadora donde se instalará el servicio.
 
 Asegurarse de tener conexión a la red.
 
