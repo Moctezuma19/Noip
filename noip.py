@@ -5,25 +5,24 @@ import smtplib, ssl
 import requests
 from configparser import ConfigParser
 
-  # For SSL
-#password = input("Type your password and press enter: ")
-
 # Lee la configuracion inicial
 config = ConfigParser()
 config.read('config.ini')
-noreply = config.get('config', 'local')
-destino = config.get('config','destino')
-passw = config.get('config','password')
-tiempo = config.getint('config','frecuencia');
+local = config.get('config', 'local')
+destino = config.get('config', 'destino')
+password = config.get('config', 'password')
+tiempo = config.getint('config', 'frecuencia')
+servidor = config.get('config', 'servidor')
 
 #recibe la ip anterior, la nueva ip, el correo servidor y el correo de destino
-def envia_correo(n,v,local,password,destino,config2):
+def envia_correo(n, v, config2):
+	global servidor, destino, password, local
 	port = 465
 	context = ssl.create_default_context()
 	try:
 		with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
 			server.login(local, password)
-			server.sendmail(local, destino, "La ip ha cambiado de " + str(n) + " a " + str(v))
+			server.sendmail(local, destino, "Subject: " + servidor + "\n\n La ip ha cambiado de " + str(n) + " a " + str(v))
 			config2.set('ip','ip',resultado)
 			with open('ip.ini', 'w') as configfile:
 				config2.write(configfile)
@@ -44,11 +43,11 @@ while True:
 
 	config2 = ConfigParser()
 	config2.read('ip.ini')
-	ip = config2.get('ip','ip')
+	ip = config2.get('ip', 'ip')
 	print(ip)
 	# si cambia se envia correo para avisar que cambio
 	if resultado == "error":
 		pass
 	elif resultado != ip :
-		envia_correo(ip,resultado,noreply,passw,destino,config2)
+		envia_correo(ip, resultado, config2)
 	time.sleep(tiempo)
