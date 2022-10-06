@@ -9,7 +9,7 @@ import requests
 import logging.handlers
 from configparser import ConfigParser
 
-log_file_path = "C:\\Users\\(Tu usuario)\\Documents\\noip.log"  # mention full path here
+log_file_path = "C:\\Users\\(Tu usuario)\\Documents\\noip\\noip.log"  # mention full path here
 mylogger = logging.getLogger("TestLogger")
 mylogger.setLevel(logging.INFO)
 handler = logging.handlers.RotatingFileHandler(log_file_path)
@@ -56,9 +56,9 @@ class Noip(win32serviceutil.ServiceFramework):
         try:
             with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
                 server.login(local, password)
-                server.sendmail(local, destino, "(Modem 2) La ip ha cambiado de " + str(n) + " a " + str(v))
+                server.sendmail(local, destino, "Subject: " + servidor + "\n\n La ip ha cambiado de " + str(n) + " a " + str(v))
                 config2.set('ip','ip',v)
-                with open('C:\\Users\\CCT-RENATO\\Documents\\ip.ini', 'w') as configfile:
+                with open('C:\\Users\\CCT-RENATO\\Documents\\noip\\ip.ini', 'w') as configfile:
                     config2.write(configfile)
                 server.quit()
         except Exception as err:
@@ -66,11 +66,12 @@ class Noip(win32serviceutil.ServiceFramework):
 
     def main(self):
         config = ConfigParser()
-        config.read('C:\\Users\\CCT-RENATO\\Documents\\config.ini')
+        config.read('C:\\Users\\(Tu usuario)\\Documents\\noip\\config.ini')
         noreply = config.get('config', 'local')
         destino = config.get('config','destino')
         passw = config.get('config','password')
-        tiempo = config.getint('config','frecuencia');
+        tiempo = config.getint('config','frecuencia')
+        servidor = config.get('config','servidor')
 
         while self.isrunning:
             resultado = ""
@@ -82,7 +83,7 @@ class Noip(win32serviceutil.ServiceFramework):
                 resultado = "error"
                 print("Un error ha ocurrido al tratar de obtener la ip publica" + str(err))
             config2 = ConfigParser()
-            config2.read('C:\\Users\\(Tu usuario)\\Documents\\ip.ini')
+            config2.read('C:\\Users\\(Tu usuario)\\Documents\\noip\\ip.ini')
             ip = config2.get('ip','ip')
             print(ip)
             # si cambia se envia correo para avisar que cambio
